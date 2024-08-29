@@ -1,0 +1,80 @@
+body {
+    font-family: Arial, sans-serif;
+    direction: rtl;
+    background-color: #f0f8ff; /* خلفية فاتحة */
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: #fff;
+    padding: 20px;
+    border-left: 1px solid #ddd;
+    position: fixed;
+    top: 0;
+    right: -250px;
+    height: 100%;
+    transition: right 0.3s ease;
+}
+
+.sidebar.active {
+    right: 0;
+}
+
+.close-btn {
+    font-size: 24px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.open-btn {
+    font-size: 24px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+}
+
+.main-content {
+    margin-right: 250px; /* مساحة لجعل المحتوى يبدأ بعد الشريط الجانبي */
+    padding: 20px;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 40px); /* جعل المحتوى يملأ الشاشة مع الأخذ في الاعتبار الزر العلوي */
+}
+
+h1 {
+    color: #4a90e2; /* لون يناسب التعليم */
+    margin: 0;
+}
+
+.logo {
+    width: 150px;
+    margin: 20px 0;
+}
+
+.start-button, .nav-button {
+    background-color: #4a90e2; /* لون مناسب للأزرار */
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    margin: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.start-button:hover, .nav-button:hover {
+    background-color: #357abd;
+}

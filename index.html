@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تطبيق Bakami</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        .container {
+            margin-top: 50px;
+            text-align: center;
+            position: relative;
+        }
+        h2 {
+            color: #2c3e50;
+        }
+        .button {
+            display: block;
+            padding: 15px 30px;
+            margin: 10px auto;
+            width: 250px;
+            font-size: 18px;
+            color: #fff;
+            background-color: #3498db;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .button:hover {
+            background-color: #2980b9;
+        }
+        .sidebar {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 250px;
+            height: 100%;
+            background-color: #ffffff;
+            border-left: 2px solid #ddd;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+            overflow: auto;
+            z-index: 1000;
+        }
+        .sidebar.show {
+            transform: translateX(0);
+        }
+        .sidebar a {
+            display: block;
+            padding: 15px;
+            text-decoration: none;
+            color: #333;
+            border-bottom: 1px solid #ddd;
+        }
+        .sidebar a:hover {
+            background-color: #f4f4f4;
+        }
+        .show-sidebar-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+        .show-sidebar-btn:hover {
+            background-color: #2980b9;
+        }
+        .splash {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 100px;
+            height: 100px;
+            background: #fff url('logo.jpg') no-repeat center center;
+            background-size: contain;
+            transform: translate(-50%, -50%);
+            z-index: 999;
+            transition: opacity 0.5s ease;
+        }
+        .splash.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        .welcome-message {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            z-index: 999;
+            display: none;
+        }
+        .start-button {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            z-index: 1001;
+            display: none;
+        }
+        .start-button:hover {
+            background-color: #2980b9;
+        }
+        .games-section {
+            display: none;
+            margin-top: 20px;
+            text-align: center;
+        }
+        .games-section .button {
+            width: 200px;
+        }
+        .affirmation-popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #3498db;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            z-index: 1002;
+            display: none;
+        }
+        /* إضافة الأزرار الإضافية */
+        .additional-buttons {
+            display: none; /* البداية بإخفاء الأزرار */
+            text-align: center;
+            margin-top: 20px;
+        }
+        .additional-buttons .button {
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div class="splash" id="splash"></div>
+    <div class="welcome-message" id="welcomeMessage">
+        <h2>مرحبا بكم في تطبيق Bakami</h2>
+    </div>
+    <button class="show-sidebar-btn" onclick="toggleSidebar()">☰</button>
+    <div class="sidebar" id="sidebar">
+        <a href="summaries.html">ملخصات</a>
+        <a href="challenges.html" id="challengesLink">التحديات</a>
+        <a href="nasayh.html">نصائح مهمة</a>
+        <a href="khoroj.html">تسجيل الخروج</a>
+    </div>
+    <button class="start-button" id="startButton">ابدأ الآن</button>
+    <div class="container" id="mainContent" style="display: none;">
+        <a href="summaries.html" class="button">ملخصات</a>
+        <a href="#" id="challengesButton" class
+         ="button">التحديات</a>
+        <a href="wad3iya.html"class="button">مقدمات و خاتمات جاهزة</a>
+        <a href="nasayh.html" class
+          ="button">نصائح مهمة</a>
+        <a href="kharita.html" class="button">خرائط التاريخ</a>
+        <a href="prof.html" class="button">أساتذة على اليوتيوب</a>
+        <a href="khoroj.html" class="button">تسجيل الخروج</a>
+    
+    </div>
+    <div class="games-section" id="gamesSection">
+        <a href="challenges.html" class="button">لعبة التواريخ</a>
+        <a href="mostalahat.html" class="button">لعبة المصطلحات</a>
+        <a href="chakhsiyat.html" class="button">لعبة الشخصيات</a>
+    </div>
+    <!-- نافذة التوكيدات المنبثقة -->
+    <div class="affirmation-popup" id="affirmationPopup">
+        <h2>توكيدات إيجابية</h2>
+        <p>كل شيء سيكون بخير. كن إيجابيًا وتقدم للأمام!</p>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // عرض الشعار لمدة ثانية واحدة
+            setTimeout(function () {
+                document.getElementById('splash').classList.add('hidden');
+                document.getElementById('welcomeMessage').style.display = 'block';
+                document.getElementById('startButton').style.display = 'block';
+            }, 1000);
+
+            document.getElementById('startButton').addEventListener('click', function () {
+                document.getElementById('welcomeMessage').style.display = 'none';
+                document.getElementById('startButton').style.display = 'none';
+                document.getElementById('mainContent').style.display = 'block';
+            });
+
+            document.getElementById('challengesButton').addEventListener('click', function () {
+                document.getElementById('gamesSection').style.display = 'block';
+            });
+
+            document.getElementById('showAdditionalButtons').addEventListener('click', function () {
+                document.getElementById('additionalButtons').style.display = 'block'; // إظهار الأزرار الإضافية
+            });
+
+            function showAffirmationPopup() {
+                var popup = document.getElementById('affirmationPopup');
+                popup.style.display = 'block';
+                setTimeout(function() {
+                    popup.style.display = 'none';
+                }, 5000); // إخفاء النافذة بعد 5 ثواني
+            }
+
+            setInterval(showAffirmationPopup, 10 * 60 * 1000); // 10 دقائق = 10 * 60 * 1000 مللي ثانية
+        });
+
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('show');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الصفحة الرئيسية</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <aside id="sidebar" class="sidebar">
+        <button class="close-btn" onclick="toggleSidebar()">×</button>
+        <a href="summaries.html">ملخصات</a>
+        <a href="challenges.html">التحديات</a>
+        <a href="nasayh.html">نصائح مهمة</a>
+        <a href="javascript:void(0);" class="nav-button" onclick="logout()">تسجيل الخروج</a>
+    </aside>
+    <main class="main-content">
+        <button class="open-btn" onclick="toggleSidebar()">☰</button>
+        <div class="content">
+            <button class="nav-button" onclick="location.href='summaries.html'">ملخصات</button>
+            <button class="nav-button"onclick="location.href='wad3iya.html'">مقدمات و خاتمات جاهزة</button>
+            <button class="nav-button" onclick="location.href='challenges.html'">التحديات</button>
+            <button class="nav-button" onclick="location.href='nasayh.html'">نصائح مهمة</button>
+            <button class="nav-button" onclick="location.href='kharita.html'">خرائط التاريخ</button>
+            <button class="nav-button"onclick="location.href='prof.html'">أساتذة على اليوتيوب</button>
+            <button class="nav-button"onclick="location.href='khoroj.html'">تسجيل الخروج</button>
+       
+        </div>
+    </main>
+    <script>
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('active');
+        }
+
+        function logout() {
+            window.location.href = 'khoroj.html'; // إعادة توجيه إلى صفحة تسجيل الخروج
+        }
+
+        function showAdditionalButtons() {
+            document.getElementById('additionalButtons').style.display = 'block';
+        }
+    </script>
+</body>
+</html>

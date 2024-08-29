@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>عرض الصور القابل للتكبير</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7f6;
+            text-align: center;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .image-wrapper {
+            display: inline-block;
+            position: relative;
+        }
+        .image-wrapper img {
+            width: 80%;
+            max-width: 600px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        .zoomed {
+            transform: scale(2); /* تكبير الصورة عند النقر */
+            z-index: 1000;
+        }
+        .zoom-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
+        .zoom-overlay img {
+            max-width: 90%;
+            max-height: 90%;
+        }
+        .zoom-overlay.active {
+            display: flex;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>:صلو على رسول الله </h2>
+        <div class="image-wrapper">
+            <img src="p.jpg" alt="صورة 1" onclick="openOverlay(this)">
+        </div>
+        
+     </div>
+    <div class="zoom-overlay" id="zoomOverlay" onclick="closeOverlay()">
+        <img id="zoomedImg" src="" alt="صورة مكبرة">
+    </div>
+
+    <script>
+        function openOverlay(img) {
+            var overlay = document.getElementById('zoomOverlay');
+            var zoomedImg = document.getElementById('zoomedImg');
+            zoomedImg.src = img.src;
+            overlay.classList.add('active');
+        }
+
+        function closeOverlay() {
+            document.getElementById('zoomOverlay').classList.remove('active');
+        }
+    </script>
+</body>
+</html>

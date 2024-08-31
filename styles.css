@@ -1,80 +1,72 @@
-body {
-    font-family: Arial, sans-serif;
-    direction: rtl;
-    background-color: #f0f8ff; /* خلفية فاتحة */
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden;
-}
-
-.sidebar {
-    width: 250px;
-    background-color: #fff;
-    padding: 20px;
-    border-left: 1px solid #ddd;
+/* إعدادات شاشة التحميل */
+.splash-screen {
     position: fixed;
     top: 0;
-    right: -250px;
+    left: 0;
+    width: 100%;
     height: 100%;
-    transition: right 0.3s ease;
-}
-
-.sidebar.active {
-    right: 0;
-}
-
-.close-btn {
-    font-size: 24px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    margin-bottom: 20px;
-}
-
-.open-btn {
-    font-size: 24px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    position: fixed;
-    top: 20px;
-    right: 20px;
-}
-
-.main-content {
-    margin-right: 250px; /* مساحة لجعل المحتوى يبدأ بعد الشريط الجانبي */
-    padding: 20px;
-}
-
-.content {
+    background-color: #ffffff; /* لون الخلفية */
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: calc(100vh - 40px); /* جعل المحتوى يملأ الشاشة مع الأخذ في الاعتبار الزر العلوي */
+    z-index: 1000;
+}
+
+.splash-screen img {
+    max-width: 100px; /* يمكنك ضبط الحجم هنا */
+    height: auto;
+}
+
+/* تحسين تنسيق التطبيق */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;  /* إزالة الهوامش الخارجية لتناسب الشاشة */
+    padding: 0;
+    display: flex;
+    flex-direction: column;  /* لترتيب المحتوى بشكل عمودي */
+    align-items: center;  /* لتوسيط المحتوى */
+    justify-content: center;  /* لتوسيط المحتوى عموديًا */
+    min-height: 100vh;  /* لتغطية الشاشة بالكامل */
+    background-color: #0a1f44;  /* لون الخلفية من الشعار */
 }
 
 h1 {
-    color: #4a90e2; /* لون يناسب التعليم */
-    margin: 0;
+    color: #FFFFFF; /* لون النص أبيض */
+    text-align: center;  /* توسيط النص */
+    margin-top: 20px;  /* إضافة مسافة من الأعلى */
 }
 
-.logo {
-    width: 150px;
-    margin: 20px 0;
+form {
+    margin-top: 20px;
+    width: 90%;  /* لتحديد عرض النموذج بالنسبة لشاشة الهاتف */
+    max-width: 400px;  /* لتحديد أقصى عرض على الشاشات الكبيرة */
+    background-color: #1c3d72;  /* لون خلفية النموذج قريب من الأزرق في الشعار */
+    padding: 20px;  /* لإضافة مسافة داخل النموذج */
+    border-radius: 10px;  /* لتقويس حواف النموذج */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);  /* لإضافة ظل خفيف */
 }
 
-.start-button, .nav-button {
-    background-color: #4a90e2; /* لون مناسب للأزرار */
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    margin: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
+textarea, input[type="file"] {
+    width: 100%;  /* لتوسيع العرض لتناسب عرض النموذج */
+    margin-top: 10px;
+    padding: 10px;  /* لإضافة مسافة داخل الحقول */
+    font-size: 16px;  /* لتكبير النص في الحقول */
+    border: 1px solid #1f497d;  /* حدود خفيفة بالأزرق الداكن */
+    border-radius: 5px;  /* لتقويس حواف الحقول */
 }
 
-.start-button:hover, .nav-button:hover {
-    background-color: #357abd;
+button {
+    width: 100%;  /* لتوسيع الزر ليغطي العرض الكامل */
+    padding: 10px;  /* لإضافة مسافة داخل الزر */
+    font-size: 18px;  /* لتكبير النص داخل الزر */
+    color: white;  /* لتغيير لون النص */
+    background-color: #6f259e;  /* لون الخلفية بنفسجي من الشعار */
+    border: none;  /* لإزالة الحدود */
+    border-radius: 5px;  /* لتقويس حواف الزر */
+    cursor: pointer;  /* لتغيير المؤشر عند التمرير فوق الزر */
+    margin-top: 15px;  /* لإضافة مسافة فوق الزر */
+}
+
+button:hover {
+    background-color: #a35f9b;  /* لون مختلف عند التحويم ليكون أفتح قليلاً */
 }
